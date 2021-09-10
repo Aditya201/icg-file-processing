@@ -1,0 +1,3 @@
+[pytest11]
+datatest = datatest._pytest_plugin
+
