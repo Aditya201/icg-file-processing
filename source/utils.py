@@ -78,7 +78,7 @@ def generate_output_file(csv_data):
 
 def upload_as_csv(csv_dir, file, csv_data):
     filename = csv_dir + file.split('.')[0] + '_' + str(datetime.now().strftime("%Y-%m-%d")) + '.csv'
-    csv_data.to_csv(filename)
+    csv_data.to_csv(filename, index = False)
 
 
 def upload_as_parquet(parquet_output_dir, file, csv_data):
