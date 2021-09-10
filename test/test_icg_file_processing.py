@@ -5,6 +5,7 @@ import os
 import unittest
 import filecmp
 import pandas as pd
+from datetime import datetime
 
 
 class LambTests(unittest.TestCase):
@@ -84,7 +85,8 @@ class LambTests(unittest.TestCase):
         columns = ['AsOfDate', 'Rowhash']
         # Dropping AsOfDate and Rowhash to avoid timestamp and hashvalue mismatch
         # Test the valid files from output file
-        actual_output_csv_df = read_csv_data_to_df("output_file_csv/", "Data_2021-09-09.csv").drop(columns,
+        actual_output_file = "Data_"+str(datetime.now().strftime("%Y-%m-%d")) + ".csv"
+        actual_output_csv_df = read_csv_data_to_df("output_file_csv/", actual_output_file).drop(columns,
                                                                                                    inplace=True, axis=1)
         expected_output_csv_df = read_csv_data_to_df("test/fixture/expected/", "Data_2021-09-09.csv").drop(columns,
                                                                                                            inplace=True,
