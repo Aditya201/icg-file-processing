@@ -73,11 +73,11 @@ class LambTests(unittest.TestCase):
     def test_handler(self):
         # Test handler with correct data, making sure it reaches the correct output directory
         event = {
-            "dir": "test/fixture",
-            "file": "Data.csv",
+            "input_dir": "test/fixture",
+            "input_file": "Data.csv",
             "lookup_dir": "lookup",
             "lookup_file": "Lookup.xlsx",
-            "error_file": "error_file",
+            "error_dir": "error_dir",
             "csv_output_dir": "output_file_csv/",
             "parquet_output_dir": "output_file_parquet/"
         }
@@ -95,68 +95,68 @@ class LambTests(unittest.TestCase):
 
     def test_handler_mandatory_fields(self):
         event = {
-            "dir": "test/fixture/expected",
-            "file": "Data_error4_2021-09-09.csv",
+            "input_dir": "test/fixture/expected",
+            "input_file": "Data_error4_2021-09-09.csv",
             "lookup_dir": "lookup",
             "lookup_file": "Lookup.xlsx",
-            "error_file": "error_file",
+            "error_dir": "error_dir",
             "csv_output_dir": "output_file_csv/",
             "parquet_output_dir": "output_file_parquet/"
         }
         handler(event)
         # Check whether the file moves to error directory or not
-        actual_output_csv_error_file = os.path.abspath("error_file/Data_error4_2021-09-09.csv")
+        actual_output_csv_error_file = os.path.abspath("error_dir/Data_error4_2021-09-09.csv")
         expected_output_csv_error_file = os.path.abspath("test/fixture/expected/Data_error4_2021-09-09.csv")
         files_match = filecmp.cmp(actual_output_csv_error_file, expected_output_csv_error_file)
         assert files_match is True
 
     def test_handler_invalid_date_type(self):
         event = {
-            "dir": "test/fixture/expected",
-            "file": "Data_error1_2021-09-09.csv",
+            "input_dir": "test/fixture/expected",
+            "input_file": "Data_error1_2021-09-09.csv",
             "lookup_dir": "lookup",
             "lookup_file": "Lookup.xlsx",
-            "error_file": "error_file",
+            "error_dir": "error_dir",
             "csv_output_dir": "output_file_csv/",
             "parquet_output_dir": "output_file_parquet/"
         }
         handler(event)
         # Check whether the file moves to error directory or not
-        actual_output_csv_error_file = os.path.abspath("error_file/Data_error1_2021-09-09.csv")
+        actual_output_csv_error_file = os.path.abspath("error_dir/Data_error1_2021-09-09.csv")
         expected_output_csv_error_file = os.path.abspath("test/fixture/expected/Data_error1_2021-09-09.csv")
         files_match = filecmp.cmp(actual_output_csv_error_file, expected_output_csv_error_file)
         assert files_match is True
 
     def test_handler_invalid_county_code(self):
         event = {
-            "dir": "test/fixture/expected",
-            "file": "Data_error2_2021-09-09.csv",
+            "input_dir": "test/fixture/expected",
+            "input_file": "Data_error2_2021-09-09.csv",
             "lookup_dir": "lookup",
             "lookup_file": "Lookup.xlsx",
-            "error_file": "error_file",
+            "error_dir": "error_dir",
             "csv_output_dir": "output_file_csv/",
             "parquet_output_dir": "output_file_parquet/"
         }
         handler(event)
         # Check whether the file moves to error directory or not
-        actual_output_csv_error_file = os.path.abspath("error_file/Data_error2_2021-09-09.csv")
+        actual_output_csv_error_file = os.path.abspath("error_dir/Data_error2_2021-09-09.csv")
         expected_output_csv_error_file = os.path.abspath("test/fixture/expected/Data_error2_2021-09-09.csv")
         files_match = filecmp.cmp(actual_output_csv_error_file, expected_output_csv_error_file)
         assert files_match is True
 
     def test_handler_invalid_Activity_Flag(self):
         event = {
-            "dir": "test/fixture/expected",
-            "file": "Data_error3_2021-09-09.csv",
+            "input_dir": "test/fixture/expected",
+            "input_file": "Data_error3_2021-09-09.csv",
             "lookup_dir": "lookup",
             "lookup_file": "Lookup.xlsx",
-            "error_file": "error_file",
+            "error_dir": "error_dir",
             "csv_output_dir": "output_file_csv/",
             "parquet_output_dir": "output_file_parquet/"
         }
         handler(event)
         # Check whether the file moves to error directory or not
-        actual_output_csv_error_file = os.path.abspath("error_file/Data_error3_2021-09-09.csv")
+        actual_output_csv_error_file = os.path.abspath("error_dir/Data_error3_2021-09-09.csv")
         expected_output_csv_error_file = os.path.abspath("test/fixture/expected/Data_error3_2021-09-09.csv")
         files_match = filecmp.cmp(actual_output_csv_error_file, expected_output_csv_error_file)
         assert files_match is True
